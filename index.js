@@ -1,11 +1,13 @@
 import { Server } from "socket.io";
 
-const port = 3030;
+const port = 3000;
 const io = new Server(port, {
     cors: {
-        origin: ["http://localhost:5173", "http://127.0.0.1:5050"],
+        origin: ["*"],
+        methods: ["GET", "POST", "DELETE", "PATCH", "PUT", "OPTIONS"],
         credentials: true,
         transports: ["websocket"],
+        allowedHeaders: ["*"],
     },
     transports: ["websocket"],
 });
