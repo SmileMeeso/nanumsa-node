@@ -8,7 +8,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://www.nanumsa.com", "172.31.3.54"],
+        origin: ["*"],
         methods: ["GET", "POST", "DELETE", "PATCH", "PUT", "OPTIONS"],
         credentials: false,
         transports: ["websocket"],
