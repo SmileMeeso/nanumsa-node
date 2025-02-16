@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 const port = 3000;
 const io = new Server(port, {
     cors: {
-        origin: ["*"],
+        origin: ["https://www.nanumsa.com"],
         methods: ["GET", "POST", "DELETE", "PATCH", "PUT", "OPTIONS"],
         credentials: true,
         transports: ["websocket"],
