@@ -5,6 +5,13 @@ import express from "express";
 const app = express();
 const server = createServer(app);
 
+app.get("/hello", (req, res) => {
+    res.send("Hello World!");
+});
+app.get("/world", (req, res) => {
+    res.send("Hello World!2");
+});
+
 const io = new Server(server, {
     cors: {
         origin: ["https://www.nanumsa.com"],
