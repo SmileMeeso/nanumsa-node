@@ -1,32 +1,19 @@
 import { Server } from "socket.io";
-import { createServer } from "http";
-import express from "express";
 
-const app = express();
-const server = createServer(app);
+const port = 3000;
 
-app.get("/hello", (req, res) => {
-    res.send("Hello World!");
-});
-app.get("/world", (req, res) => {
-    res.send("Hello World!2");
-});
-
-const io = new Server(server, {
+const io = new Server(port, {
     cors: {
-        origin: ["https://www.nanumsa.com"],
-        methods: ["GET", "POST", "OPTIONS"],
+        origin: ["http://www.nanumsa.com/"],
         credentials: true,
-        transports: ["websocket"],
+        transports: ["websocket", "polling"],
     },
-    transports: ["websocket"],
+    transports: ["websocket", "polling"],
 });
 
 const clients = {};
 
 io.on("connection", (socket) => {
-    console.log("connection established.");
-
     socket.on("message", (token) => {
         if (!clients[token]) {
             console.log("new client", token);
@@ -35,9 +22,4 @@ io.on("connection", (socket) => {
             clients[token].emit("message", token);
         }
     });
-});
-
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
 });
