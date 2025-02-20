@@ -10,5 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-# CMD ["node", "index.js"]
-CMD ["sh", "-c", "DEBUG=engine,socket.io* node index.js"]
+CMD ["node", "index.js"]

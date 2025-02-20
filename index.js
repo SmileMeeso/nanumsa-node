@@ -16,9 +16,10 @@ const clients = {};
 io.on("connection", (socket) => {
     socket.on("message", (token) => {
         if (!clients[token]) {
-            console.log("new client", token);
+            console.log("*** new client", token);
             clients[token] = socket;
         } else {
+            console.log("*** send message", token);
             clients[token].emit("message", token);
         }
     });
